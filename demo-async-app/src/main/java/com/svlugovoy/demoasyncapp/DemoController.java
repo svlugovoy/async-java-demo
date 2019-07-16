@@ -127,7 +127,9 @@ public class DemoController {
                 .retrieve()
                 .bodyToMono(String.class);
 
-        String result = helloResp.zipWith(worldResp, (h, w) -> h + ", " + w + "!!!").block();
+        String result = helloResp.zipWith(worldResp, (h, w) -> h + ", " + w + "!!!")
+                .onErrorReturn("Error.")
+                .block();
 
         long endTime = System.currentTimeMillis();
 
